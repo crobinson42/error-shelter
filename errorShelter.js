@@ -48,7 +48,7 @@
 
 
 	window.Error = errorShelter;
-	window.Error.errorShelter = {
+	window.Error[config.nameSpace] = {
 		getStorage : getStorage
 	}; // makes these methods accessible on the Error method
 
