@@ -48,7 +48,9 @@
 
 
 	window.Error = errorShelter;
-	window.Error.errorShelter = this; // makes these methods accessible on the Error method
+	window.Error.errorShelter = {
+		getStorage : getStorage
+	}; // makes these methods accessible on the Error method
 
 })();
 
