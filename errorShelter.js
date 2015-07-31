@@ -23,10 +23,10 @@
 			'browserInfo'	: {
 				'online'	: navigator.onLine,
 				'userAgent'	: navigator.userAgent,
-				'location'	: window.location
+				'location'	: location.origin + '' + location.pathname
 			}
 		});
-		return nativeError.call(window,arguments);
+		return nativeError.apply(window,arguments);
 	};
 
 	// JSON.stringify the object and put back in localStorage
@@ -40,7 +40,7 @@
 
 	// Returns the localStorage after JSON.parse
 	var getStorage = function () {
-		return new Object(JSON.parse(localStorage[config.nameSpace]));
+		return JSON.parse(localStorage[config.nameSpace]);
 	};
 
 	var generateTime = function () {
@@ -53,7 +53,4 @@
 	}; // makes these methods accessible on the Error method
 
 })();
-
-
-
 
