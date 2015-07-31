@@ -21,7 +21,8 @@
 			'message' 	: arguments[0],
 			'time'		: generateTime(),
 			'browserInfo'	: {
-				'navigator'	: navigator || window.navigator,//TODO fix this line, navigator is not showing up
+				'online'	: navigator.onLine,
+				'userAgent'	: navigator.userAgent,
 				'location'	: window.location
 			}
 		});
@@ -45,7 +46,6 @@
 	var generateTime = function () {
 		return new Date().getTime();
 	};
-
 
 	window.Error = errorShelter;
 	window.Error[config.nameSpace] = {
