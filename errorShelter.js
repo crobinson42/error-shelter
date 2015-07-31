@@ -16,13 +16,18 @@
 	var nativeError = Error;
 
 	var errorShelter = function() {
+		// get navigator props, varies from browser to browser.. simple solution:
+		var navigator = {};
+		for (var np in window.navigator) {
+			navigator[np] = window.navigator[np];
+		}
+
 		setErrorInStorage({
 			'arguments' : arguments,
 			'message' 	: arguments[0],
 			'time'		: generateTime(),
 			'browserInfo'	: {
-				'online'	: navigator.onLine,
-				'userAgent'	: navigator.userAgent,
+				'navigator'	: navigator,
 				'location'	: location.origin + '' + location.pathname
 			}
 		});
