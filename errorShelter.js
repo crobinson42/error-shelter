@@ -3,7 +3,7 @@
 // Cory Robinson
 
 (function () {
-	
+
 	var config = {
 		nameSpace : 'errorShelter',//can be changed to fit app needs
 	};
@@ -22,6 +22,9 @@
 			navigator[np] = window.navigator[np];
 		}
 
+		// invoke the Error
+		var e = nativeError.apply(window,arguments);
+
 		setErrorInStorage({
 			'arguments' : arguments,
 			'message' 	: arguments[0],
@@ -29,9 +32,11 @@
 			'browserInfo'	: {
 				'navigator'	: navigator,
 				'location'	: location.origin + '' + location.pathname
-			}
+			},
+			'stack' 	:  e.stack
 		});
-		return nativeError.apply(window,arguments);
+
+		return e;
 	};
 
 	// JSON.stringify the object and put back in localStorage
@@ -58,4 +63,3 @@
 	}; // makes these methods accessible on the Error method
 
 })();
-
