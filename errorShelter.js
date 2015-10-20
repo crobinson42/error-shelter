@@ -33,7 +33,8 @@
 				'navigator'	: navigator,
 				'location'	: location.origin + '' + location.pathname
 			},
-			'stack' 	:  e.stack
+			'stack' 	:  e.stack,
+			'options' : {}
 		});
 
 		return e;
