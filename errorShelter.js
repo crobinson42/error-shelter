@@ -10,8 +10,14 @@
 
 	if (!localStorage) { return console.warn('errorShelter.js - localStorage not supported.'); }
 
-	// initialize an empty object in localStorage
-	localStorage.setItem(config.nameSpace, JSON.stringify({errors:[]}));
+	// check for existing errorShelter in storage and if non exists initialize empty
+	if (!localStorage.getItem(config.nameSpace)) {
+		initializeEmptyStorage();
+	}
+
+	var initializeEmptyStorage = function () {
+		localStorage.setItem(config.nameSpace, JSON.stringify({errors:[]}));
+	};
 
 	var nativeError = Error;
 
@@ -60,7 +66,8 @@
 
 	window.Error = errorShelter;
 	window.Error[config.nameSpace] = {
-		getStorage : getStorage
+		getStorage : getStorage,
+		emptyStorage : initializeEmptyStorage
 	}; // makes these methods accessible on the Error method
 
 })();
