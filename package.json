@@ -1,6 +1,6 @@
 {
   "name": "error-shelter",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "frontend error catch and storage utility for JS apps.",
   "main": "errorShelter.js",
   "scripts": {
