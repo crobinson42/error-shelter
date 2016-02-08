@@ -9,12 +9,6 @@
 		availableGlobal : true, // make the nameSpace available either GLOBAL.nameSpace || window.nameSpace
 	};
 
-	// The available methods exposed for API consumption
-	var publicApi = {
-		getStorage : getStorage,
-		emptyStorage : initializeEmptyStorage
-	};
-
 	if (!localStorage) { return console.warn('errorShelter.js - localStorage not supported.'); }
 
 	var initializeEmptyStorage = function () {
@@ -72,7 +66,11 @@
 		return new Date().getTime();
 	};
 
-
+	// The available methods exposed for API consumption
+	var publicApi = {
+		getStorage : getStorage,
+		emptyStorage : initializeEmptyStorage
+	};
 
 	if (config.availableGlobal) {
 		if (window) {
