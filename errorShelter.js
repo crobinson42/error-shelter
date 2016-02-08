@@ -5,7 +5,14 @@
 (function () {
 
 	var config = {
-		nameSpace : 'errorShelter',//can be changed to fit app needs
+		nameSpace : 'errorShelter', //can be changed to fit app needs
+		availableGlobal : true, // make the nameSpace available either GLOBAL.nameSpace || window.nameSpace
+	};
+
+	// The available methods exposed for API consumption
+	var publicApi = {
+		getStorage : getStorage,
+		emptyStorage : initializeEmptyStorage
 	};
 
 	if (!localStorage) { return console.warn('errorShelter.js - localStorage not supported.'); }
@@ -65,10 +72,15 @@
 		return new Date().getTime();
 	};
 
+
+
+	if (config.availableGlobal) {
+		if (window) {
+			window[config.nameSpace] = publicApi;
+		}
+	}
+
 	window.Error = errorShelter;
-	window.Error[config.nameSpace] = {
-		getStorage : getStorage,
-		emptyStorage : initializeEmptyStorage
-	}; // makes these methods accessible on the Error method
+	window.Error[config.nameSpace] = publicApi;
 
 })();
