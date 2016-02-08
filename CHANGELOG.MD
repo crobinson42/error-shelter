@@ -1,4 +1,4 @@
-# 0.1.3
+# 0.1.4
 ## Enhancements
   - Add 'global' namespace config flag to errorShelter public API methods
     can be available on window/GLOBAL
